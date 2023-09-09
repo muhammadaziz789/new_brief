@@ -1,0 +1,127 @@
+.desktop {
+  position: relative;
+  margin-top: rem(-90);
+  .paralaxContent {
+    height: calc(100vh - 300px);
+  }
+}
+.contentsContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+
+  .contens {
+    .wrapper {
+      .left {
+        .title {
+          @include mainTitle;
+          line-height: auto;
+        }
+        .text {
+          font-size: rem(20);
+          font-weight: 500;
+          color: $dark;
+        }
+        .numbers {
+          @include alignCenter;
+          gap: rem(48);
+          flex-wrap: wrap;
+
+          .item {
+            @include alignCenter;
+            gap: rem(10);
+            .num {
+              @include mainTitle;
+            }
+            .text {
+              font-size: rem(16);
+              font-weight: 500;
+              color: $dark;
+              width: rem(80);
+              line-height: rem(18);
+            }
+          }
+        }
+      }
+      .right {
+        @include alignEndJustifyEnd;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .contentsContainer {
+    .contens {
+      height: 100%;
+      .wrapper {
+        .left {
+          margin-top: rem(30);
+          .text {
+            font-size: rem(14);
+          }
+        }
+        .right {
+          width: 120%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1135px) {
+  .contentsContainer {
+    .contens {
+      margin-bottom: rem(200);
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .desktop {
+    .paralaxContent {
+      height: 100vh;
+      min-height: rem(720);
+    }
+  }
+  .contentsContainer {
+    bottom: rem(100);
+    .contens {
+      margin-bottom: rem(50);
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .desktop {
+    .paralaxContent {
+      height: 100vh;
+      min-height: rem(620);
+    }
+  }
+  .contentsContainer {
+    bottom: rem(0);
+    .contens {
+      margin-bottom: rem(170);
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .desktop {
+    .paralaxContent {
+      height: 100vh;
+      min-height: rem(720);
+    }
+  }
+  .contentsContainer {
+    bottom: rem(100);
+    .contens {
+      margin-bottom: rem(50);
+    }
+  }
+}

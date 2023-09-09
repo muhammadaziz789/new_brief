@@ -1,0 +1,93 @@
+
+.wrapper {
+  background-color: $mainBackgroundDarker;
+  padding: rem(36) 0;
+  border-bottom: rem(1) solid $borderDarker;
+
+  .contents {
+    @include alignCenterJustifyBetween;
+
+    .inputs {
+      @include alignCenter;
+      gap: rem(16);
+
+      .sort {
+        @include alignCenterJustifyBetween;
+        background-color: white;
+        gap: rem(8);
+        border-radius: rem(30);
+        height: rem(48);
+        padding: 0 rem(20);
+
+        .clear {
+          cursor: pointer;
+        }
+
+        .arrow {
+          position: relative;
+          width: rem(24);
+          cursor: pointer;
+          .up {
+            position: absolute;
+            top: rem(-18);
+            right: 0;
+          }
+          .down {
+            position: absolute;
+            bottom: rem(-18);
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .title {
+    color: $dark;
+    @include headerTitle;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    .contents {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: rem(20);
+
+      .inputs {
+        .sort {
+          width: 100%;
+
+          .arrow {
+            height: rem(30);
+            width: 85%;
+
+            .up {
+              top: rem(-3);
+              left: 0;
+            }
+            .down {
+              bottom: rem(-3);
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .wrapper {
+    .contents {
+      .inputs {
+        width: 100%;
+        gap: rem(10);
+        .sort {
+          width: rem(120);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.wrapper {
+  .shortDescription {
+    font-size: rem(28);
+    font-weight: 700;
+    line-height: rem(32);
+    color: $dark;
+    margin-bottom: 10px;
+  }
+  .fullDescription {
+    font-size: rem(20);
+    color: #6B7690;
+    font-weight: 400;
+    line-height: rem(26);
+
+    * {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+  .imgWrapper {
+    position: relative;
+    border-radius: rem(10);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    &.active {
+      .playBtn {
+        opacity: 1;
+      }
+    }
+
+    .playBtn {
+      transition: 0.4s;
+      opacity: 0;
+      position: absolute;
+      z-index: 97;
+      left: 0;
+      top: 0;
+      background-color: #00000077;
+      width: 100%;
+      height: 100%;
+      @include alignCenterJusftifyCenter;
+      border-radius: rem(10);
+
+      svg {
+        color: #ffb800;
+        font-size: rem(70);
+        transition: 0.5s;
+      }
+    }
+
+    &::after {
+      content: "";
+      background-color: $dark;
+      opacity: 0.6;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: rem(10);
+    }
+
+    .content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      padding: rem(21);
+      z-index: 2;
+
+      .button {
+        position: absolute;
+        left: rem(27);
+        border-radius: rem(30);
+        color: $dark;
+      }
+    }
+  }
+}
+
+@include media("mobile") {
+  .wrapper {
+    .shortDescription {
+      font-size: rem(20);
+      line-height: rem(26);
+    }
+    .fullDescription {
+      display: inline-block;
+      font-size: rem(16);
+      line-height: rem(22);
+    }
+    .imgWrapper {
+      .content {
+        display: none;
+      }
+      .playBtn {
+        opacity: 1;
+        svg {
+          width: rem(40);
+        }
+      }
+    }
+  }
+}
+
+@include media("small") {
+  .wrapper {
+    .shortDescription {
+      font-size: rem(18);
+      line-height: rem(24);
+      margin-top: rem(14);
+    }
+    .fullDescription {
+      display: block;
+      font-size: rem(14);
+      line-height: rem(20);
+    }
+  }
+}

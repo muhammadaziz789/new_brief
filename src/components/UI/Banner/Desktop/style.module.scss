@@ -1,0 +1,37 @@
+.desktop {
+  position: relative;
+  margin-top: rem(-90);
+
+  .paralaxContent {
+    height: calc(100vh - 100px);
+    min-height: rem(720);
+    max-height: rem(860);
+  }
+}
+.contentsContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+
+  .contens {
+    .wrapper {
+      .left {
+        margin-top: rem(30);
+        .title {
+          @include mainTitle;
+          line-height: auto;
+        }
+        .text {
+          font-size: rem(20);
+          font-weight: 500;
+          color: $dark;
+        }
+      }
+      .right {
+        width: 100%;
+        @include alignEndJustifyEnd;
+      }
+    }
+  }
+}

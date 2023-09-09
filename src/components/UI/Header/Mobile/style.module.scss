@@ -1,0 +1,133 @@
+.header {
+  transition: all 0.5s ease-in-out;
+  background-color: transparent;
+  height: rem(90);
+  @include alignCenter;
+  z-index: 999;
+
+  .box {
+    @include alignCenterJustifyBetween;
+
+    .left,
+    .right,
+    .center {
+      @include alignCenter;
+    }
+
+    .center {
+      .logo {
+        @include alignCenter;
+      }
+    }
+
+    .left {
+      position: relative;
+      width: rem(200);
+      cursor: pointer;
+
+      .wrapper {
+        position: relative;
+        margin-top: rem(-35);
+        svg {
+          font-size: rem(30);
+        }
+        .arrow1,
+        .arrow2 {
+          position: absolute;
+          left: 0;
+          transition: 0.5s;
+        }
+        .arrow2 {
+          top: rem(8);
+        }
+
+        &.active {
+          .arrow1 {
+            transform: rotate(45deg);
+            top: 0;
+          }
+          .arrow2 {
+            transform: rotate(-45deg);
+            top: 0;
+          }
+        }
+      }
+    }
+    .right {
+      width: rem(200);
+      justify-content: flex-end;
+
+      .registrBtn {
+        button {
+          background-color: $baseBlack;
+          height: rem(28);
+          border-radius: rem(10);
+          color: white !important;
+          text-transform: none;
+        }
+      }
+    }
+
+    .langs {
+      position: relative;
+      @include alignCenterJustifyBetween;
+      color: $baseBlack;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: rem(12);
+
+      .arrow {
+        background-color: $baseBlack;
+        width: rem(30);
+        height: rem(30);
+        border-radius: 50%;
+        margin-left: rem(10);
+        @include alignCenterJusftifyCenter;
+        svg {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .menu {
+    position: fixed;
+    top: rem(90);
+    width: 100%;
+    background-color: white;
+    z-index: 97;
+  }
+  .menu.main {
+    background-image: url("/images/mainBackground.png");
+  }
+}
+
+.activeHeader {
+  background-color: $white;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    .box {
+      .langs {
+        .arrow {
+          width: rem(20);
+          height: rem(20);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .header {
+    .box {
+      .left {
+        width: rem(100);
+      }
+      .right {
+        width: rem(100);
+      }
+    }
+  }
+}

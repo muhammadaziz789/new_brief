@@ -1,0 +1,17 @@
+
+.header {
+  .title {
+    color: $dark;
+    font-size: rem(24);
+    font-weight: 700;
+  }
+  .text {
+    font-size: rem(14);
+    color: $graySecondry;
+
+    .number {
+      color: $dark;
+      font-weight: 600;
+    }
+  }
+}

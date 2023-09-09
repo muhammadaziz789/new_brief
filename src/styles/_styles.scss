@@ -1,8 +1,56 @@
-@import '../../public/fonts/archivo/stylesheet.scss';
 
 
-.container {
-    max-width: 840px !important;
-    margin: 0 auto;
-    padding: 0 22px;
+@mixin mainTitle {
+  font-size: rem(40);
+  color: $baseBlack;
+  line-height: rem(50px);
+  font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: rem(32);
+    line-height: rem(42);
+  }
+}
+@mixin sectionTitle {
+  color: $blackLight;
+  font-weight: 700;
+  font-size: rem(32);
+  line-height: rem(40);
+
+  @media (max-width: 1200px) {
+    font-size: rem(28);
+    line-height: rem(36);
+  }
+  @media (max-width: 768px) {
+    font-size: rem(24);
+    line-height: rem(32);
+  }
+}
+
+@mixin headerTitle {
+  font-weight: 700;
+  font-size: rem(36);
+  line-height: rem(45);
+
+  @media (max-width: 1200px) {
+    font-size: rem(32);
+  }
+  @media (max-width: 768px) {
+    font-size: rem(28);
+  }
+}
+
+#videoPlayer {
+  .vp-sidedock {
+    display: none !important;
+  }
+}
+
+.watch_more_btn, .watch_less_btn {
+  color: $dark;
+  margin-left: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
 }

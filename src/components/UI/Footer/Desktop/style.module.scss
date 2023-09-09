@@ -1,0 +1,32 @@
+.footer {
+  background-color: $baseBlack;
+  color: $white;
+
+  .top {
+    .wrapper {
+      .gridTitle {
+        font-size: rem(20);
+        font-weight: 700;
+      }
+      .about {
+        .name {
+          font-size: rem(24);
+          font-weight: 500;
+          width: rem(100);
+          line-height: rem(26);
+        }
+        .socialText {
+          margin-top: rem(50);
+        }
+        .socialMedias {
+          margin-top: rem(18);
+          @include alignCenter;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    @include alignCenterJustifyBetween;
+  }
+}

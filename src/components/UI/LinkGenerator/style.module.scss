@@ -1,0 +1,8 @@
+.link {
+  @include alignCenter;
+
+  .wrapper {
+    @include alignCenter;
+    width: 100%;
+  }
+}

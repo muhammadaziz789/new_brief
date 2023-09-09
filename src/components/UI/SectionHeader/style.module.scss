@@ -1,0 +1,14 @@
+.wrapper {
+    .title {
+        @include sectionTitle;
+    }
+    .text {
+        color: $darkGray;
+    }
+    .link {
+        color: $blackLight;
+        font-weight: 600;
+        @include alignCenter;
+        gap: rem(8);
+    }
+}

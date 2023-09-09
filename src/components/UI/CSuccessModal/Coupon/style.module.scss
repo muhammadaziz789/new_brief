@@ -1,0 +1,25 @@
+
+
+.coupon {
+  padding-bottom: rem(20);
+  .title {
+    font-weight: 500;
+    font-size: rem(20);
+    text-align: center;
+    margin-bottom: rem(20);
+  }
+  .item {
+    @include alignCenterJustifyBetween;
+    padding: rem(10) 0;
+    .text {
+      @include alignCenter;
+      color: $grayLight;
+      font-weight: 500;
+      gap: rem(12);
+    }
+    .price {
+      font-weight: 600;
+      color: $dark;
+    }
+  }
+}
