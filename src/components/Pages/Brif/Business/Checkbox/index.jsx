@@ -1,8 +1,13 @@
 import { useState } from "react";
 import cls from "./style.module.scss";
+import { useEffect } from "react";
 
-const Checkbox = ({ text }) => {
+const Checkbox = ({ text, initName, name, handleValues }) => {
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    handleValues(initName, name, handleValues);
+  }, [active]);
 
   return (
     <div

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { List } from "./state";
 import Select from "../Visuality/Select";
-const LogoStill = ({ text = "" }) => {
+const LogoStill = ({ text = "", handleValues, initName, name }) => {
   const [newList, setNewList] = useState([...List]);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState([]);
+
+  useEffect(() => {
+    handleValues(initName, name, active?.join(""));
+  }, [active]);
 
   return (
     <div className="w-full">

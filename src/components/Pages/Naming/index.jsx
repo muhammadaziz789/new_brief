@@ -6,42 +6,63 @@ import Textarea from "components/UI/Textarea";
 import NameType from "./NameType";
 import Ability from "./Ability";
 import Separate from "./Separate";
+import { useForm } from "react-hook-form";
+import { useMemo } from "react";
+import useDebounce from "hooks/useDebounce";
+import CButton from "components/UI/CButton";
 
 const NamingWrapper = () => {
-  const list = [
-    {
-      text: "Qaysi brend nomlari sizga yoqadi va nega?",
-      subtext:
-        "(Mahsuloti yaxshi bo'lmasada ammo brend nomi yoqsa uni ham yozing)",
-    },
-    {
-      text: "Qaysi brend nomlari sizga yoqmaydi va nega?",
-      subtext:
-        "(Mahsuloti yaxshi bo'lsada ammo brend nomi yoqmasa uni ham yozing)",
-    },
-    {
-      text: "Kompaniyaning nomi qaysi tilda bo'lishini istaysiz?",
-      subtext: "",
-    },
-    {
-      text: "Nom qanday xususiyatlarga ega bo'lishini istaysiz?",
-      subtext: "",
-    },
-    {
-      text: "Nom quyidagi qaysi turda bo'lishini istaysiz?",
-      subtext: "",
-    },
-    {
-      text: "Nom qanday ma'noni ifodalashini istaysiz? (Faqatgina 2ta so'z)",
-      subtext: "",
-    },
-    {
-      text: "Kompaniya nomida qadriyatlaringiz aks ettirilishini xohlaysizmi?",
-    },
-    {
-      text: "Nom raqobatchilaringiz nomlaridan butunlay ajralib tursinmi?",
-    },
-  ];
+  const {
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
+  const list = useMemo(() => {
+    return [
+      {
+        text: "Qaysi brend nomlari sizga yoqadi va nega?",
+        subtext:
+          "(Mahsuloti yaxshi bo'lmasada ammo brend nomi yoqsa uni ham yozing)",
+      },
+      {
+        text: "Qaysi brend nomlari sizga yoqmaydi va nega?",
+        subtext:
+          "(Mahsuloti yaxshi bo'lsada ammo brend nomi yoqmasa uni ham yozing)",
+      },
+      {
+        text: "Kompaniyaning nomi qaysi tilda bo'lishini istaysiz?",
+        subtext: "",
+      },
+      {
+        text: "Nom qanday xususiyatlarga ega bo'lishini istaysiz?",
+        subtext: "",
+      },
+      {
+        text: "Nom quyidagi qaysi turda bo'lishini istaysiz?",
+        subtext: "",
+      },
+      {
+        text: "Nom qanday ma'noni ifodalashini istaysiz? (Faqatgina 2ta so'z)",
+        subtext: "",
+      },
+      {
+        text: "Kompaniya nomida qadriyatlaringiz aks ettirilishini xohlaysizmi?",
+      },
+      {
+        text: "Nom raqobatchilaringiz nomlaridan butunlay ajralib tursinmi?",
+      },
+    ];
+  }, []);
+
+  const handleChange = useDebounce((name, value) => {
+    setValue(name, value);
+  }, 300);
+
+  const submitForm = () => {
+    const data = getValues();
+    console.log(data);
+  };
 
   const getUI = (el, index) => {
     switch (index) {
@@ -49,56 +70,73 @@ const NamingWrapper = () => {
         return (
           <div className="flex space-x-3">
             <span>{index}</span>
-            <Textarea text={el.text} subtext={el.subtext} />
+            <Textarea
+              onChange={(e) => handleChange("brand_name", e.target.value)}
+              text={el.text}
+              subtext={el.subtext}
+            />
           </div>
         );
       case 2:
         return (
           <div className="flex space-x-3">
             <span>{index}</span>
-            <Textarea text={el.text} subtext={el.subtext} />
+            <Textarea
+              onChange={(e) =>
+                handleChange("dislike_brand_name", e.target.value)
+              }
+              text={el.text}
+              subtext={el.subtext}
+            />
           </div>
         );
       case 3:
         return (
           <div className="flex space-x-3">
             <span>{index}</span>
-            <Languages text={el.text} />
+            <Languages name="language" setValue={setValue} text={el.text} />
           </div>
         );
       case 4:
         return (
           <div className="flex space-x-3">
             <span>{index}</span>
-            <DocumentSelect text={el.text} />
+            <DocumentSelect
+              name="document"
+              setValue={setValue}
+              text={el.text}
+            />
           </div>
         );
       case 5:
         return (
           <div className="flex space-x-3">
             <span>{index}</span>
-            <NameType text={el.text} />
+            <NameType name="name_type" setValue={setValue} text={el.text} />
           </div>
         );
       case 6:
         return (
           <div className="flex space-x-3 w-full">
             <span>{index}</span>
-            <Textarea text={el.text} />
+            <Textarea
+              onChange={(e) => handleChange("name_meaning", e.target.value)}
+              text={el.text}
+            />
           </div>
         );
       case 7:
         return (
           <div className="flex space-x-3 w-full">
             <span>{index}</span>
-            <Ability text={el.text} />
+            <Ability name="ability" setValue={setValue} text={el.text} />
           </div>
         );
       case 8:
         return (
           <div className="flex space-x-3 w-full">
             <span>{index}</span>
-            <Separate text={el.text} />
+            <Separate name="stand_out" setValue={setValue} text={el.text} />
           </div>
         );
       default:
@@ -140,6 +178,10 @@ const NamingWrapper = () => {
         ))}
       </div>
 
+      <div className="container flex justify-end" style={{ marginTop: "10px" }}>
+        <CButton text="Formani jo'natish" handleClick={() => submitForm()} />
+      </div>
+
       {/* <BrandAdds />
           <BrandSouviners />
           <BrandInteriers />
@@ -148,7 +190,7 @@ const NamingWrapper = () => {
 
           <BrandTables /> */}
 
-      <div className="container mt-10">
+      <div className="container" style={{ marginTop: "30px" }}>
         <h3 className="text-lg leading-[20px] sm:text-2xl md:text-[32px] font-[600] text-center">
           Siz bilan hamkorlik <br /> qilishdan mamnunmiz!
         </h3>

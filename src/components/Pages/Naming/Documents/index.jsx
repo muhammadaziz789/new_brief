@@ -2,7 +2,7 @@ import { useState } from "react";
 import DocSelect from "components/UI/DocSelect";
 import { initialListData } from "./state";
 
-const DocumentSelect = ({ text }) => {
+const DocumentSelect = ({ text, setValue, name }) => {
   const [list, setList] = useState([...initialListData]);
 
   const handleCheck = (el) => {
@@ -11,6 +11,9 @@ const DocumentSelect = ({ text }) => {
 
       return { ...item };
     });
+
+    const selected = result.filter((i) => i.active);
+    setValue(name, selected);
 
     setList(result);
   };

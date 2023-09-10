@@ -10,7 +10,7 @@ export default function CButton({
   translation = "common",
   color = "#fff",
   disabled = false,
-  backgroundColor = "#151515",
+  backgroundColor = "#000",
   variant = "contained",
   boxShadow = "none",
   classes = "bg-baseBlack",
@@ -44,7 +44,7 @@ export default function CButton({
       <Button
         variant={variant}
         sx={customization}
-        className={`normal-case bg-baseBlack ${classes} relative normal-case cursor-pointer ${cls.button}`}
+        className={`normal-case bg-[#000] ${classes} relative normal-case cursor-pointer ${cls.button}`}
         onClick={(e) => {
           e.preventDefault();
           handleClick(e);

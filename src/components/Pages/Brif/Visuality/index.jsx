@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "./Select";
 
-const Visuality = ({ children = [] }) => {
+const Visuality = ({ children = [], initName, name, handleValues }) => {
   const [active, setActive] = useState([]);
+
+  useEffect(() => {
+    handleValues(initName, name, active);
+  }, [active]);
 
   return (
     <div className="w-full">

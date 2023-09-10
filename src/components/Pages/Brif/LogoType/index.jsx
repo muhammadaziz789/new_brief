@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { List } from "./state";
 import Select from "../Visuality/Select";
 
-const LogoType = ({ text = "" }) => {
+const LogoType = ({ text = "", handleValues, initName, name }) => {
   const [newList, setNewList] = useState([...List]);
   const [active, setActive] = useState([]);
+
+  useEffect(() => {
+    handleValues(initName, name, active);
+  }, [active]);
 
   return (
     <div className="w-full">
@@ -40,6 +44,9 @@ const LogoType = ({ text = "" }) => {
         <textarea
           className="border border-main rounded-[4px] w-full mt-2 p-2"
           cols={6}
+          onChange={(e) =>
+            handleValues(initName, "successfull_logos", e.target.value)
+          }
         ></textarea>
       </div>
     </div>

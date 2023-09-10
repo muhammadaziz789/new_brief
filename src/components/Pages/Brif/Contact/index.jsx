@@ -6,6 +6,10 @@ const ContactInfo = ({
   text_area = false,
   select = false,
   list_select = [],
+  handleChange,
+  name,
+  handleValues,
+  initName,
 }) => {
   const [list, setList] = useState(list_select);
 
@@ -17,6 +21,9 @@ const ContactInfo = ({
       return { ...item };
     });
 
+    const selected = result.find((i) => i.active);
+    handleValues(initName, name, selected.key);
+
     setList(result);
   };
 
@@ -27,12 +34,14 @@ const ContactInfo = ({
         <textarea
           className="border border-main rounded-[4px] w-full mt-2 p-2"
           rows={3}
+          onChange={(e) => handleChange(initName, name, e.target.value)}
         />
       )}
       {!text_area && !select && (
         <input
           className="border border-main rounded-[4px] w-full mt-2"
           type="text"
+          onChange={(e) => handleChange(initName, name, e.target.value)}
         />
       )}
       {select && (

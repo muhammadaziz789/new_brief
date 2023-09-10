@@ -6,16 +6,19 @@ import BrandDocuments from "./Documents";
 import BrandingMain from "./Main";
 import BrandSouviners from "./Souviners";
 import BrandTables from "./Tables";
+import CButton from "components/UI/CButton";
 
 const BrandingWrapper = ({ setText }) => {
   const {
-    control,
-    handleSubmit,
-    register,
-    reset,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
+
+  const submitForm = () => {
+    const data = getValues();
+    console.log(data);
+  };
 
   return (
     <>
@@ -26,6 +29,9 @@ const BrandingWrapper = ({ setText }) => {
       <BrandClothes name="clothes" setValue={setValue} />
       <BrandAddsMaterisl name="materials" setValue={setValue} />
       <BrandTables name="tables" setValue={setValue} />
+      <div className="container flex justify-end" style={{ marginTop: "10px" }}>
+        <CButton text="Formani jo'natish" handleClick={() => submitForm()} />
+      </div>
       <div className="container">
         <h3 className="text-lg mt-10 leading-[20px] sm:text-2xl md:text-[32px] font-[600] text-center">
           Siz bilan hamkorlik qilishdan mamnunmiz!

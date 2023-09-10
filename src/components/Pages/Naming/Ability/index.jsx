@@ -2,7 +2,7 @@ import { useState } from "react";
 import { initialListData } from "./state";
 import CCheckbox from "components/UI/CElements/CCheckbox";
 
-const Ability = ({ text }) => {
+const Ability = ({ text, name, setValue }) => {
   const [list, setList] = useState([...initialListData]);
 
   const handleCheck = (el) => {
@@ -12,6 +12,9 @@ const Ability = ({ text }) => {
       } else item.active = false;
       return { ...item };
     });
+
+    const selected = result.find((i) => i.active);
+    setValue(name, selected);
 
     setList(result);
   };

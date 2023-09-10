@@ -2,7 +2,7 @@ import { useState } from "react";
 import DocSelect from "components/UI/DocSelect";
 import { initialListData } from "./state";
 
-const NameType = ({ text }) => {
+const NameType = ({ text, name, setValue }) => {
   const [list, setList] = useState([...initialListData]);
 
   const handleCheck = (el) => {
@@ -12,6 +12,9 @@ const NameType = ({ text }) => {
       }
       return { ...item };
     });
+
+    const selected = result.filter((i) => i.active);
+    setValue(name, selected);
 
     setList(result);
   };

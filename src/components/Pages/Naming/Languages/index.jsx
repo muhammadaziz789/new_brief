@@ -2,7 +2,7 @@ import { useState } from "react";
 import { list } from "./state";
 import CCheckbox from "components/UI/CElements/CCheckbox";
 
-const Languages = ({ text }) => {
+const Languages = ({ text, setValue, name }) => {
   const [newList, setNewList] = useState([...list]);
 
   const handleCheck = (el) => {
@@ -13,6 +13,8 @@ const Languages = ({ text }) => {
       return { ...item };
     });
 
+    const selected = result.find((i) => i.active);
+    setValue(name, selected);
     setNewList(result);
   };
 

@@ -18,19 +18,19 @@ const Select = ({
         onClick={(e) => {
           e.stopPropagation();
           if (multiple) {
-            if (active?.includes(element.id)) {
-              setActive(active.filter((i) => i !== element.id));
+            if (active?.includes(element.key)) {
+              setActive(active.filter((i) => i !== element.key));
             } else {
-              setActive((prev) => [...prev, element.id]);
+              setActive((prev) => [...prev, element.key]);
             }
           } else {
-            setActive([element.id]);
+            setActive([element.key]);
           }
         }}
       >
         <div className={cls.checkbox__check}>
           <div className={cls.checkbox__check__inner}>
-            {active.length && active?.includes(element.id) ? (
+            {active.length && active?.includes(element.key) ? (
               <img src="/svg/check-line.svg" alt="check" />
             ) : (
               ""

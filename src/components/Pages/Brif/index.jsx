@@ -10,16 +10,31 @@ import LogoStill from "./Logo";
 import Logo from "./LogoStill";
 import Visuality from "./Visuality";
 import CCheckbox from "components/UI/CElements/CCheckbox";
+import { useForm } from "react-hook-form";
+import useDebounce from "hooks/useDebounce";
+import CButton from "components/UI/CButton";
 
+const infos = {
+  contact_infos: {},
+  info_business: {},
+  logo_info: {},
+  logo_additional_info: {},
+};
 const BrifWrapper = () => {
+  const {
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm();
+
   const [newList, setNewList] = useState([...list]);
 
   const [checkList, setCheckList] = useState([
-    { text: "Ha", active: false, id: 1 },
-    { text: "Yo'q", active: false, id: 2 },
+    { text: "Ha", active: false, id: 1, key: "yes" },
+    { text: "Yo'q", active: false, id: 2, key: "no" },
   ]);
 
-  const handleCheck = (element) => {
+  const handleCheck = (element, initName, name) => {
     const result = checkList.map((item) => {
       if (item.id === element.id) {
         item.active = !element.active;
@@ -27,7 +42,28 @@ const BrifWrapper = () => {
       return { ...item };
     });
 
+    infos[initName][name] = element.key;
+
+    setValue(initName, infos[initName]);
+
     setCheckList(result);
+  };
+
+  const submitForm = () => {
+    const data = getValues();
+    console.log(data);
+  };
+
+  const handleChange = useDebounce((initName, name, value) => {
+    infos[initName][name] = value;
+
+    setValue(initName, infos[initName]);
+  }, 300);
+
+  const handleValues = (initName, name, value) => {
+    infos[initName][name] = value;
+
+    setValue(initName, infos[initName]);
   };
 
   const getUI = (el, index) => {
@@ -48,6 +84,10 @@ const BrifWrapper = () => {
                   text_area={item.text_area}
                   select={item.select}
                   list_select={item.list}
+                  handleChange={handleChange}
+                  name={item.key}
+                  handleValues={handleValues}
+                  initName={el.key}
                 />
               </div>
             ))}
@@ -64,7 +104,12 @@ const BrifWrapper = () => {
                 <span>
                   {index}.{ind + 1}
                 </span>
-                <Business text={item.text} />
+                <Business
+                  text={item.text}
+                  name={item.key}
+                  initName={el.key}
+                  handleChange={handleChange}
+                />
               </div>
             ))}
           </>
@@ -81,18 +126,58 @@ const BrifWrapper = () => {
               <p className="mb-2">
                 <span>{index}.0 </span> {el.text}
               </p>
-              <Checkbox text={el?.select?.[0]?.text} />
+              <Checkbox
+                name="logo_info_active"
+                initName={el.key}
+                handleValues={handleValues}
+                text={el?.select?.[0]?.text}
+              />
             </div>
             {el.child?.map((item, ind) => (
               <div className="flex space-x-3 mt-4 mb-8">
                 <span>
                   {index}.{ind + 1}
                 </span>
-                {ind === 0 && <Visuality children={el.child} />}
-                {ind === 1 && <Business text={item.text} />}
-                {ind === 2 && <LogoType text={item.text} />}
-                {ind === 3 && <LogoStill text={item.text} />}
-                {ind === 4 && <Logo text={item.text} />}
+                {ind === 0 && (
+                  <Visuality
+                    initName={el.key}
+                    name="logo_color"
+                    handleValues={handleValues}
+                    children={el.child}
+                  />
+                )}
+                {ind === 1 && (
+                  <Business
+                    initName={el.key}
+                    name="color_not_used"
+                    handleChange={handleValues}
+                    text={item.text}
+                  />
+                )}
+                {ind === 2 && (
+                  <LogoType
+                    initName={el.key}
+                    name="logo_style"
+                    handleValues={handleValues}
+                    text={item.text}
+                  />
+                )}
+                {ind === 3 && (
+                  <LogoStill
+                    initName={el.key}
+                    name="logo_represent"
+                    handleValues={handleValues}
+                    text={item.text}
+                  />
+                )}
+                {ind === 4 && (
+                  <Logo
+                    initName={el.key}
+                    name="logo_notice"
+                    handleValues={handleValues}
+                    text={item.text}
+                  />
+                )}
               </div>
             ))}
           </>
@@ -117,7 +202,9 @@ const BrifWrapper = () => {
                         <div>
                           <CCheckbox
                             element={check}
-                            handleCheck={handleCheck}
+                            handleCheck={(val) =>
+                              handleCheck(val, el.key, "slogon_active")
+                            }
                           />
                         </div>
                       ))}
@@ -127,6 +214,9 @@ const BrifWrapper = () => {
                 <textarea
                   className="border border-main rounded-[4px] w-full mt-2 p-2 resize-none sm:mx-6"
                   rows={1}
+                  onChange={(e) =>
+                    handleChange(el.key, item.key, e.target.value)
+                  }
                 />
               </div>
             ))}
@@ -187,6 +277,10 @@ const BrifWrapper = () => {
             {getUI(el, index + 1)}
           </div>
         ))}
+      </div>
+
+      <div className="container flex justify-end" style={{ marginTop: "10px" }}>
+        <CButton text="Formani jo'natish" handleClick={() => submitForm()} />
       </div>
 
       <div className="container mt-10">
