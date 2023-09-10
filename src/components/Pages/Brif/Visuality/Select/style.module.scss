@@ -1,0 +1,75 @@
+.imageBox {
+  position: relative;
+  .image {
+    width: 100%;
+  }
+
+  .logos {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+
+    .logo {
+      background-color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      @include centerFlex;
+    }
+  }
+}
+
+.checkbox {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+  column-gap: 6px;
+  cursor: pointer;
+  &__check {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $main;
+    border-radius: 4px;
+
+    &__inner {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &__text {
+    color: $main;
+  }
+}
+
+@include breakpoint("sm") {
+  .imageBox {
+    .logos {
+      left: 5px;
+      top: 5px;
+      column-gap: 3px;
+
+      .logo {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+  .checkbox {
+    align-items: flex-start;
+    &__check {
+      width: 14px;
+      height: 14px;
+      &__inner {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    &__text {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}
