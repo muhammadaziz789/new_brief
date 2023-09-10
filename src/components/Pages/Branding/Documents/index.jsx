@@ -3,7 +3,7 @@ import CHeader from "components/UI/CElements/CHeader";
 import DocSelect from "components/UI/DocSelect";
 import { initialListData } from "./state";
 
-const BrandDocuments = ({ setText = () => {} }) => {
+const BrandDocuments = ({ setText = () => {}, setValue, name }) => {
   const [list, setList] = useState(initialListData);
 
   const handleCheck = (el) => {
@@ -15,6 +15,8 @@ const BrandDocuments = ({ setText = () => {} }) => {
     });
     setText(el.id);
 
+    const actives = list.filter((i) => i.active) ?? [];
+    setValue(name, actives);
     setList(result);
   };
 

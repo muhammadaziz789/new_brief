@@ -3,7 +3,7 @@ import DocSelect from "components/UI/DocSelect";
 import { useState } from "react";
 import { initialListData } from "./state";
 
-const BrandAdds = () => {
+const BrandAdds = ({ name, setValue }) => {
   const [list, setList] = useState([...initialListData]);
 
   const handleCheck = (el) => {
@@ -14,6 +14,8 @@ const BrandAdds = () => {
       return { ...item };
     });
 
+    const actives = list.filter((i) => i.active) ?? [];
+    setValue(name, actives);
     setList(result);
   };
 

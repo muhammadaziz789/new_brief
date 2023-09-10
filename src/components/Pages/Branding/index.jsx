@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import BrandAdds from "./Adds";
 import BrandAddsMaterisl from "./AddsMaterisl";
 import BrandClothes from "./Clothes";
@@ -7,15 +8,24 @@ import BrandSouviners from "./Souviners";
 import BrandTables from "./Tables";
 
 const BrandingWrapper = ({ setText }) => {
+  const {
+    control,
+    handleSubmit,
+    register,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm();
+
   return (
     <>
       <BrandingMain />
-      <BrandDocuments />
-      <BrandAdds />
-      <BrandSouviners />
-      <BrandClothes />
-      <BrandAddsMaterisl />
-      <BrandTables />
+      <BrandDocuments name="documents" setValue={setValue} />
+      <BrandAdds name="adds" setValue={setValue} />
+      <BrandSouviners name="souviners" setValue={setValue} />
+      <BrandClothes name="clothes" setValue={setValue} />
+      <BrandAddsMaterisl name="materials" setValue={setValue} />
+      <BrandTables name="tables" setValue={setValue} />
       <div className="container">
         <h3 className="text-lg mt-10 leading-[20px] sm:text-2xl md:text-[32px] font-[600] text-center">
           Siz bilan hamkorlik qilishdan mamnunmiz!

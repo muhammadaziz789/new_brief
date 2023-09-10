@@ -1,0 +1,45 @@
+.container {
+  height: rem(50);
+  width: 100%;
+  gap: rem(15);
+}
+
+.character {
+  color: $dark;
+  background-color: $graySecondryLighter;
+  border-radius: rem(10);
+  font-size: rem(14);
+  outline: none;
+  border: none;
+}
+
+.nofocus {
+  border: 1px solid $error !important;
+  border-radius: rem(10);
+}
+
+.character:first-child {
+  margin-left: 0;
+}
+// .nofocus:first-child {
+//   margin-left: 0;
+// }
+
+.character__inactive {
+  background-color: $graySecondryLighter;
+}
+
+.character__selected {
+  border: rem(1) solid $yellowLight;
+
+  &::before {
+    content: "-";
+    color: $yellowLight;
+  }
+}
+.character__selected:last-child {
+  // border: rem(2) solid $yellowLight;
+  &::before {
+    display: none;
+  }
+}

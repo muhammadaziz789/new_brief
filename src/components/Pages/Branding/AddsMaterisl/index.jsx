@@ -4,7 +4,7 @@ import { initialListData } from "./state";
 import CHeader from "components/UI/CElements/CHeader";
 import DocSelect from "components/UI/DocSelect";
 
-const BrandAddsMaterisl = () => {
+const BrandAddsMaterisl = ({ name, setValue }) => {
   const [list, setList] = useState([...initialListData]);
 
   const handleCheck = (el) => {
@@ -14,6 +14,9 @@ const BrandAddsMaterisl = () => {
       } else item.active = false;
       return { ...item };
     });
+
+    const actives = list.filter((i) => i.active) ?? [];
+    setValue(name, actives);
 
     setList(result);
   };

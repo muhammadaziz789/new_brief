@@ -3,10 +3,10 @@ import Head from "next/head";
 import useTranslation from "next-translate/useTranslation";
 
 export default function SEO({ title, image = "", translation = "common" }) {
-  const { lang } = useTranslation(translation)
+  const { lang } = useTranslation(translation);
   const projectName = useMemo(() => {
-    return lang === "uz" ? "Fikr atolyesi" : "Фикр атолйеси";
-  }, [lang])
+    return lang === "uz" ? "Brif" : "Brif";
+  }, [lang]);
   return (
     <Head>
       <meta
