@@ -7,6 +7,7 @@ import BrandingMain from "./Main";
 import BrandSouviners from "./Souviners";
 import BrandTables from "./Tables";
 import CButton from "components/UI/CButton";
+import BrandInteriers from "../Interiers";
 
 const BrandingWrapper = ({ setText }) => {
   const {
@@ -26,6 +27,7 @@ const BrandingWrapper = ({ setText }) => {
       <BrandDocuments name="documents" setValue={setValue} />
       <BrandAdds name="adds" setValue={setValue} />
       <BrandSouviners name="souviners" setValue={setValue} />
+      <BrandInteriers name="interiers" setValue={setValue} />
       <BrandClothes name="clothes" setValue={setValue} />
       <BrandAddsMaterisl name="materials" setValue={setValue} />
       <BrandTables name="tables" setValue={setValue} />
